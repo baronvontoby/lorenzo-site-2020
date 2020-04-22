@@ -1,11 +1,12 @@
 import React from "react";
-import { MDBCol, MDBContainer, MDBRow, MDBFooter, MDBIcon, MDBBtn } from "mdbreact";
+import { MDBContainer, MDBRow, MDBFooter, MDBIcon, MDBBtn } from "mdbreact";
+import './footer.css';
 
 const Footer = () => {
   return (
-    <MDBFooter color="indigo" dark className="font-small pt-4 mt-4">
+    <MDBFooter color="indigo" className="font-small pt-4 mt-4">
       <MDBContainer fluid className="text-center">
-        <MDBRow className='text-center'>
+        <MDBRow className='text-center social-icons-row'>
             <MDBBtn size="lg" href="https://www.linkedin.com/in/lorenzo-dandrea-41b720157/" 
             tag="a" target="_blank" floating social="li">
                 <MDBIcon fab icon="linkedin-in" />
