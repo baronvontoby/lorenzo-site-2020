@@ -41,7 +41,7 @@ class HomePage extends React.Component {
                     <MDBCol md="4">
                         <MDBIcon icon="chart-area" size="3x" className="red-text" />
                         <h5 className="font-weight-bold my-4">Dashboard Programming</h5>
-                        <p className="grey-text mb-md-0 mb-5">
+                        <p className="grey-text mb-md-0 mb-5 text-left">
                             I am currently developing two projects that manage data.  One is setting up a community connector through
                             Google's Coummunity Connectors app builder to allow data to flow from a 3rd party API to Google Data Studio.
                             My second dashboard project is to combine two API's sets of data and create a custom UI to allow the creating of
@@ -51,7 +51,7 @@ class HomePage extends React.Component {
                     <MDBCol md="4">
                         <MDBIcon icon="server" size="3x" className="cyan-text" />
                         <h5 className="font-weight-bold my-4">Websites</h5>
-                        <p className="grey-text mb-md-0 mb-5">
+                        <p className="grey-text mb-md-0 mb-5 text-left">
                             After all I am a web developer.  I have deployed multiple projects utilizing multiple cloud based solutions.
                             Most of my sites are Wordpress and hosted through Dreamhost but I do have a few passion projects that utilize React,
                             like this site does and those are hosted on a mixture of Heroku and AWS. As I continue this journey I hope to develop
@@ -61,7 +61,7 @@ class HomePage extends React.Component {
                     <MDBCol md="4">
                         <MDBIcon far icon="comments" size="3x" className="orange-text" />
                         <h5 className="font-weight-bold my-4">Support</h5>
-                        <p className="grey-text mb-md-0 mb-5">
+                        <p className="grey-text mb-md-0 mb-5 text-left">
                             I also wanted to state that I am a people person first.  My journey to the world of development actually started with
                             me in Sales.  People are what drive everything, and being able to communicate well and concisely is extremely important.
                             Now that I am on the operations side, I think it has actually made me a better communicator, especially when it comes to
