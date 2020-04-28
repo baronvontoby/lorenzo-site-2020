@@ -25,12 +25,54 @@ class GamePage extends React.Component {
               correct : 'Hogwarts' 
             }
         ],
-        harryPotterGame : false
+        harryPotterGame : false,
+        currentGame : [{
+            question: '',
+            answers: [],
+            correct: ''
+        }],
+        harryPotterWinsLosses : {
+            wins : 0,
+            losses : 0
+        }
     }
 
     harryPotterGameHandler = () => {
         const doesShow = this.state.harryPotterGame;
         this.setState({harryPotterGame: !doesShow});
+
+    }
+
+    harryPlayHandler = () => {
+        let n = this.state.harryPotter.length;
+        let x = this.getRandomInt(n);
+        let q = this.state.harryPotter[x].question;
+        let a = this.state.harryPotter[x].answers;
+        let c = this.state.harryPotter[x].correct;
+        let newGame = [{ question : q, answers : a, correct : c}]
+        this.setState({currentGame: newGame});
+    }
+
+    getRandomInt(max) {
+        return Math.floor(Math.random()* Math.floor(max));
+    }
+
+    answerChecker = (event) => {
+        let x = this.state.currentGame[0].correct;
+        let y = event.target.value;
+        let wins = this.state.harryPotterWinsLosses.wins;
+        let loss = this.state.harryPotterWinsLosses.losses;
+        let newWinsLoss = {wins : 0, losses: 0}
+
+        if ( x === y ) {
+            wins++
+            newWinsLoss = { wins: wins, losses: loss}
+            this.setState({harryPotterWinsLosses: newWinsLoss});
+        } else {
+            loss++
+            newWinsLoss = {wins: wins, losses : loss}
+            this.setState({harryPotterWinsLosses: newWinsLoss});
+        }
     }
 
     render() {
@@ -39,8 +81,14 @@ class GamePage extends React.Component {
 
         if (this.state.harryPotterGame) {
             harryPotterHolder = (
-                    <HarryPotterTrivia></HarryPotterTrivia>
-                )
+                <HarryPotterTrivia
+                    question={this.state.currentGame[0].question}
+                    correct={this.state.currentGame[0].correct}
+                    answers={this.state.currentGame[0].answers}
+                    click={this.harryPlayHandler}
+                    checker={this.answerChecker}
+                ></HarryPotterTrivia>
+             )
         }
 
 
@@ -57,7 +105,15 @@ class GamePage extends React.Component {
                         </MDBCol>
                     </MDBRow>
                     <MDBRow className='GameDisplay'>
-                        {harryPotterHolder}
+                        <MDBCol md='12' className='mb-4 text-center'>
+                            {harryPotterHolder}
+                        </MDBCol>
+                    </MDBRow>
+                    <MDBRow>
+                        <MDBCol md='12' className='mb-4 text-center'>
+                            <h3>Wins and Losses</h3>
+                            <p>Wins: {this.state.harryPotterWinsLosses.wins} Losses: {this.state.harryPotterWinsLosses.losses}</p>
+                        </MDBCol>
                     </MDBRow>
                 </MDBContainer>
             </div>
