@@ -2,6 +2,7 @@ import React from 'react';
 import {MDBBtn, MDBBtnGroup, MDBRow, MDBCol} from 'mdbreact';
 
 const HarryPotterTrivia = (props) => {
+
     return (
         <div>
             <MDBRow>
@@ -14,11 +15,6 @@ const HarryPotterTrivia = (props) => {
                         <MDBBtn onClick={props.checker} value={props.answers[3]}>{props.answers[3]}</MDBBtn>
                     </MDBBtnGroup>
                     <MDBBtn onClick={props.click} >Play</MDBBtn>
-                </MDBCol>
-            </MDBRow>
-            <MDBRow>
-                <MDBCol md='12' className='mb-4 text-center'>
-                    
                 </MDBCol>
             </MDBRow>
         </div>

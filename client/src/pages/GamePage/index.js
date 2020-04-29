@@ -8,21 +8,47 @@ class GamePage extends React.Component {
     
     state = {
         harryPotter : [
-            { question: 'What was Harry\'s owl name?',
-              answers : [ 'Hedwig', 'Crookshanks', 'Padfoot', 'Buckbeak' ],
-              correct : 'Hedwig' 
+            { 
+                question: 'What was Harry\'s owl name?',
+                answers : [ 'Hedwig', 'Crookshanks', 'Padfoot', 'Buckbeak' ],
+                correct : 'Hedwig',
+                id : 1 
             },
-            { question: 'When is Harry Potters birthday?',
-              answers : [ 'July 12th', 'August 10th', 'May 31st', 'July 31st' ],
-              correct : 'July 31st' 
+            { 
+                question: 'When is Harry Potters birthday?',
+                answers : [ 'July 12th', 'August 10th', 'May 31st', 'July 31st' ],
+                correct : 'July 31st',
+                id : 2 
             },
-            { question: 'What is the tavern called in Hogsmeade?',
-              answers : [ 'The Three Broomsticks', 'Knockturn Alley', 'Leaky Cauldron', 'Godrics Hollow' ],
-              correct : 'The Three Broomsticks' 
+            { 
+                question: 'What is the tavern called in Hogsmeade?',
+                answers : [ 'The Three Broomsticks', 'Knockturn Alley', 'Leaky Cauldron', 'Godrics Hollow' ],
+                correct : 'The Three Broomsticks',
+                id : 3 
             },
-            { question: 'Which school did Harry Potter Attend?',
-              answers : [ 'Hogwarts', 'Durmstrang', 'Ilvermorny', 'Beauxbatons' ],
-              correct : 'Hogwarts' 
+            {
+                question: 'Which school did Harry Potter Attend?',
+                answers : [ 'Hogwarts', 'Durmstrang', 'Ilvermorny', 'Beauxbatons' ],
+                correct : 'Hogwarts',
+                id : 4 
+            },
+            {
+                question: 'Who was the headmaster of Hogwarts when the Chamber of Secrets was opened for the first time?',
+                answers: [ 'Armando Dippet', 'Albus Dumbledore', 'Phineas Nigellus Black', 'Brutus Scrimgeour'],
+                correct: 'Armando Dippet',
+                id : 5
+            },
+            {
+                question: 'What was the room called that Harry taught other students in Dumbledores Army?',
+                answers: ['The Library', 'Room of Requirement', 'Gryffindor Common Room', 'The Three Broomsticks'],
+                correct: 'Room of Requirement',
+                id : 6
+            },
+            {
+                question: 'What real world library was used to film some of the library scenes in the Harry Potter movies?',
+                answers: ['National Library of Brazil', 'Peckham Library London', 'Trinity College Library Dublin', 'George Peabody Library USA'],
+                correct: 'Trinity College Library Dublin',
+                id : 7
             }
         ],
         harryPotterGame : false,
@@ -34,8 +60,12 @@ class GamePage extends React.Component {
         harryPotterWinsLosses : {
             wins : 0,
             losses : 0
-        }
+        },
+        guessRight : null,
+        guessWrong : null,
+        gameOver : false
     }
+    // HARRY POTTER GAME LOGIC//
 
     harryPotterGameHandler = () => {
         const doesShow = this.state.harryPotterGame;
@@ -44,13 +74,20 @@ class GamePage extends React.Component {
     }
 
     harryPlayHandler = () => {
+        const oldArr = [...this.state.harryPotter];
         let n = this.state.harryPotter.length;
-        let x = this.getRandomInt(n);
-        let q = this.state.harryPotter[x].question;
-        let a = this.state.harryPotter[x].answers;
-        let c = this.state.harryPotter[x].correct;
-        let newGame = [{ question : q, answers : a, correct : c}]
-        this.setState({currentGame: newGame});
+        if ( n > 0 ) {
+            let x = this.getRandomInt(n);
+            let q = this.state.harryPotter[x].question;
+            let a = this.state.harryPotter[x].answers;
+            let c = this.state.harryPotter[x].correct;
+            oldArr.splice(x, 1);
+            let newGame = [{ question : q, answers : a, correct : c}]
+            this.setState({currentGame: newGame, guessRight: null, guessWrong: null, harryPotter: oldArr});
+        }
+        else {
+            this.setState({gameOver: true});
+        }
     }
 
     getRandomInt(max) {
@@ -58,6 +95,7 @@ class GamePage extends React.Component {
     }
 
     answerChecker = (event) => {
+        console.log('click')
         let x = this.state.currentGame[0].correct;
         let y = event.target.value;
         let wins = this.state.harryPotterWinsLosses.wins;
@@ -67,17 +105,19 @@ class GamePage extends React.Component {
         if ( x === y ) {
             wins++
             newWinsLoss = { wins: wins, losses: loss}
-            this.setState({harryPotterWinsLosses: newWinsLoss});
+            this.setState({harryPotterWinsLosses: newWinsLoss, guessRight : true});
         } else {
             loss++
             newWinsLoss = {wins: wins, losses : loss}
-            this.setState({harryPotterWinsLosses: newWinsLoss});
+            this.setState({harryPotterWinsLosses: newWinsLoss, guessWrong : true});
         }
     }
 
     render() {
-        
+
+        let result = null;
         let harryPotterHolder = null;
+        let gameStatus = null;
 
         if (this.state.harryPotterGame) {
             harryPotterHolder = (
@@ -87,10 +127,27 @@ class GamePage extends React.Component {
                     answers={this.state.currentGame[0].answers}
                     click={this.harryPlayHandler}
                     checker={this.answerChecker}
+                    gRight={this.state.guessRight}
+                    gWrong={this.state.guessWrong}
                 ></HarryPotterTrivia>
              )
         }
 
+        if (this.state.guessRight) {
+            result = (
+                <h4>Congratulations you win! The correct answer is {this.state.currentGame[0].correct}. Hit play and play again!</h4>
+            )
+        } else if (this.state.guessWrong) {
+            result = (
+                <h4>That is incorrect. The correct answer is {this.state.currentGame[0].correct}. Please hit play and try again.</h4>
+            )
+        }
+
+        if (this.state.gameOver) {
+            gameStatus = (
+                <h4>The Game is over.... come back soon and play again!</h4>
+            )
+        }
 
         return(
             <div className='GameMain'>
@@ -107,6 +164,12 @@ class GamePage extends React.Component {
                     <MDBRow className='GameDisplay'>
                         <MDBCol md='12' className='mb-4 text-center'>
                             {harryPotterHolder}
+                        </MDBCol>
+                    </MDBRow>
+                    <MDBRow>
+                        <MDBCol className='mb-4 text-center'>
+                            {result}
+                            {gameStatus}
                         </MDBCol>
                     </MDBRow>
                     <MDBRow>
