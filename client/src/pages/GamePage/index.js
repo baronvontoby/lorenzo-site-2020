@@ -70,12 +70,12 @@ class GamePage extends React.Component {
     harryPotterGameHandler = () => {
         const doesShow = this.state.harryPotterGame;
         this.setState({harryPotterGame: !doesShow});
-
     }
 
     harryPlayHandler = () => {
         const oldArr = [...this.state.harryPotter];
         let n = this.state.harryPotter.length;
+        const doesShow = this.state.harryPotterGame;
         if ( n > 0 ) {
             let x = this.getRandomInt(n);
             let q = this.state.harryPotter[x].question;
@@ -86,7 +86,7 @@ class GamePage extends React.Component {
             this.setState({currentGame: newGame, guessRight: null, guessWrong: null, harryPotter: oldArr});
         }
         else {
-            this.setState({gameOver: true});
+            this.setState({gameOver: true, harryPotterGame: !doesShow});
         }
     }
 
@@ -141,6 +141,9 @@ class GamePage extends React.Component {
             result = (
                 <h4>That is incorrect. The correct answer is {this.state.currentGame[0].correct}. Please hit play and try again.</h4>
             )
+        }
+        else if ( !this.state.guessWrong && !this.state.guessRight ) {
+            result = null;
         }
 
         if (this.state.gameOver) {
