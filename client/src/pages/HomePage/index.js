@@ -21,7 +21,7 @@ class HomePage extends React.Component {
         something that might be possible.  That is what has led me on this path of being a Developer, to explore the possible.
         `;
 
-        const heroText = `Welcome to my new and approved website.  Below you will learn a little bit more about me and my path
+        const heroText = `Welcome to my new and improved website.  Below you will learn a little bit more about me and my path
         to becoming a programmer.  Thanks for taking the time and I hope you enjoy!`
 
         return(
