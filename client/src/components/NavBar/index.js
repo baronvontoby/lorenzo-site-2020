@@ -36,9 +36,6 @@ class NavBar extends React.Component {
                     <MDBNavLink to="/portfolio">Portfolio</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                    <MDBNavLink to="/resume">Resume</MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
                     <MDBNavLink to="/games">Fun Games</MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>

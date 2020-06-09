@@ -31,7 +31,7 @@ const PortfolioJumbo = () => {
                   className="waves-effect"
                   href="https://docs.google.com/document/d/1POueIHZouYbasqnA73irXPvntlM36czO2tsCMLqyEyo/edit?usp=sharing"
                 >
-                  Download Resume<MDBIcon icon="download" />
+                  View Resume<MDBIcon icon="download" />
                 </MDBBtn>
               </div>
             </MDBCardBody>
