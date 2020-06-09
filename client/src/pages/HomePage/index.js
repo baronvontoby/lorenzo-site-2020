@@ -21,8 +21,8 @@ class HomePage extends React.Component {
         something that might be possible.  That is what has led me on this path of being a Developer, to explore the possible.
         `;
 
-        const heroText = `Welcome to my new and improved website.  Below you will learn a little bit more about me and my path
-        to becoming a programmer.  Thanks for taking the time and I hope you enjoy!`
+        const heroText = `Welcome to my new and improved website.  Below you will learn a little bit more about me and also see a few strengths
+        I have as a developer.  Thanks for taking the time and I hope you enjoy!`
 
         return(
             <div>
@@ -40,12 +40,14 @@ class HomePage extends React.Component {
                     <MDBRow className="main-page-four">
                     <MDBCol md="4">
                         <MDBIcon icon="chart-area" size="3x" className="red-text" />
-                        <h5 className="font-weight-bold my-4">Dashboard Programming</h5>
+                        <h5 className="font-weight-bold my-4">Data Driven</h5>
                         <p className="grey-text mb-md-0 mb-5 text-left">
                             I am currently developing two projects that manage data.  One is setting up a community connector through
                             Google's Coummunity Connectors app builder to allow data to flow from a 3rd party API to Google Data Studio.
                             My second dashboard project is to combine two API's sets of data and create a custom UI to allow the creating of
-                            their own dashboards.  I am using a combination of MDB React and Chart.js to create all the necessary visuals.
+                            their own dashboards.  I am using a combination of MDB React and Chart.js to create all the necessary visuals. Understanding
+                            data flow is one of my strenghts. At the very core of the internet, it is simply just passing information from one machine to another.
+                            The key to a successful web app is just finding out the exact specific way it is supposed to be said.
                         </p>
                     </MDBCol>
                     <MDBCol md="4">
