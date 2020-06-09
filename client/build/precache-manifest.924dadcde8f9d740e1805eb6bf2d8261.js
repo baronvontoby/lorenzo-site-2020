@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "425e40a611fb0e18cf4dd3739065f575",
+    "revision": "a3ea33000d1ab9a38f38a0942406518a",
     "url": "/index.html"
   },
   {
-    "revision": "a7dcd8ace4794722a011",
+    "revision": "3c11255d2e2d88ae5cac",
     "url": "/static/css/2.afdb01ab.chunk.css"
   },
   {
-    "revision": "3dc1fac70bb330616eeb",
-    "url": "/static/css/main.f5256e69.chunk.css"
+    "revision": "0f84ff895f7d65e2a362",
+    "url": "/static/css/main.72d878eb.chunk.css"
   },
   {
-    "revision": "a7dcd8ace4794722a011",
-    "url": "/static/js/2.cb5b6417.chunk.js"
+    "revision": "3c11255d2e2d88ae5cac",
+    "url": "/static/js/2.d4b25117.chunk.js"
   },
   {
     "revision": "b46eae19120e0343c25f399c83a404d7",
-    "url": "/static/js/2.cb5b6417.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.d4b25117.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3dc1fac70bb330616eeb",
-    "url": "/static/js/main.c91af80c.chunk.js"
+    "revision": "0f84ff895f7d65e2a362",
+    "url": "/static/js/main.3d50fbe1.chunk.js"
   },
   {
     "revision": "e43b4766d11737cc6ae2",
@@ -34,6 +34,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "8ef6a08cdc1154920165680a4edde771",
     "url": "/static/media/arrow_right.8ef6a08c.svg"
+  },
+  {
+    "revision": "a97fc8088ae1242856cb280d26349336",
+    "url": "/static/media/bamazon.a97fc808.JPG"
   },
   {
     "revision": "b257fa9c5ac8c515ac4d77a667ce2943",
@@ -100,7 +104,27 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/fa-solid-900.ec763292.svg"
   },
   {
+    "revision": "e22f90532443fea23c50eff81a2c9a86",
+    "url": "/static/media/flipClock.e22f9053.JPG"
+  },
+  {
+    "revision": "2fb72c6f8af129943b7366cade422899",
+    "url": "/static/media/giphyFun.2fb72c6f.JPG"
+  },
+  {
     "revision": "7100727b68c684e1322c101f33de353e",
     "url": "/static/media/heroHome.7100727b.jpg"
+  },
+  {
+    "revision": "6c95fd47aeb6762b39ddfc037824e78c",
+    "url": "/static/media/liriNodeApp.6c95fd47.JPG"
+  },
+  {
+    "revision": "2dfd6dd9bff6eaebf93085b9ffc0435a",
+    "url": "/static/media/pugs4life.2dfd6dd9.JPG"
+  },
+  {
+    "revision": "074be42851a69e4eaa692b4fdc8f0101",
+    "url": "/static/media/zombieGame.074be428.JPG"
   }
 ]);
