@@ -157,7 +157,7 @@ class GamePage extends React.Component {
                 <MDBContainer>
                     <MDBRow>
                         <MDBCol md='12' className='mb-4 text-center'>
-                            <MDBBtnGroup size='lg'>
+                            <MDBBtnGroup size='lg' className='btn-group'>
                                 <MDBBtn className='hpTriviaBtn' onClick={this.harryPotterGameHandler}>Harry Potter Trivia Game</MDBBtn>
                                 <MDBBtn className='hpTriviaBtn'>Coming Soon</MDBBtn>
                                 <MDBBtn className='hpTriviaBtn'>Coming Soon</MDBBtn>

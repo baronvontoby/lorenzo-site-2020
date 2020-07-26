@@ -23,7 +23,7 @@ const PortfolioCard = props => {
             <MDBCardText>
               {props.project.description}
             </MDBCardText>
-            <a href={props.project.link} className='black-text d-flex justify-content-end'>
+            <a href={props.project.link} className='black-text d-flex justify-content-end' target='_blank'>
               <h5>
                 Click to See More
                 <MDBIcon icon='angle-double-right' className='ml-2' />

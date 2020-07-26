@@ -38,38 +38,38 @@ class HomePage extends React.Component {
                         {secondPara}
                     </p>
                     <MDBRow className="main-page-four">
-                    <MDBCol md="4">
-                        <MDBIcon icon="chart-area" size="3x" className="red-text" />
-                        <h5 className="font-weight-bold my-4">Data Driven</h5>
-                        <p className="grey-text mb-md-0 mb-5 text-left">
-                            I am currently developing two projects that manage data.  One is setting up a community connector through
-                            Google's Coummunity Connectors app builder to allow data to flow from a 3rd party API to Google Data Studio.
-                            My second dashboard project is to combine two API's sets of data and create a custom UI to allow the creating of
-                            their own dashboards.  I am using a combination of MDB React and Chart.js to create all the necessary visuals. Understanding
-                            data flow is one of my strenghts. At the very core of the internet, it is simply just passing information from one machine to another.
-                            The key to a successful web app is just finding out the exact specific way it is supposed to be said.
-                        </p>
-                    </MDBCol>
-                    <MDBCol md="4">
-                        <MDBIcon icon="server" size="3x" className="cyan-text" />
-                        <h5 className="font-weight-bold my-4">Websites</h5>
-                        <p className="grey-text mb-md-0 mb-5 text-left">
-                            After all I am a web developer.  I have deployed multiple projects utilizing multiple cloud based solutions.
-                            Most of my sites are Wordpress and hosted through Dreamhost but I do have a few passion projects that utilize React,
-                            like this site does and those are hosted on a mixture of Heroku and AWS. As I continue this journey I hope to develop
-                            more dynamic applications that bring people together.
-                        </p>
-                    </MDBCol>
-                    <MDBCol md="4">
-                        <MDBIcon far icon="comments" size="3x" className="orange-text" />
-                        <h5 className="font-weight-bold my-4">Support</h5>
-                        <p className="grey-text mb-md-0 mb-5 text-left">
-                            I also wanted to state that I am a people person first.  My journey to the world of development actually started with
-                            me in Sales.  People are what drive everything, and being able to communicate well and concisely is extremely important.
-                            Now that I am on the operations side, I think it has actually made me a better communicator, especially when it comes to
-                            asking for what you need. Details are important but it is also important to let people know why.
-                        </p>
-                    </MDBCol>
+                        <MDBCol md="4">
+                            <MDBIcon icon="file-code" size="3x" className="red-text" />
+                            <h5 className="font-weight-bold my-4">Front End and UI</h5>
+                            <p className="grey-text mb-md-0 mb-5 text-left">
+                                The majority of my work so far has been primarily focused on Front End issues with some back end work also. In my pervious role
+                                I was one of two developers so we definitely needed to wear multiple hats, but one of our main responsibilities was to work with
+                                the creative team and turn sketches into websites. From those experiences my abilities in the design and implementation flourished and
+                                I would consider myself proficient in the three big front end languages (HTML, CSS and JavaScript) and the user interface.
+                            </p>
+                        </MDBCol>
+                        <MDBCol md="4">
+                            <MDBIcon icon="server" size="3x" className="cyan-text" />
+                            <h5 className="font-weight-bold my-4">API Integrations and Back End</h5>
+                            <p className="grey-text mb-md-0 mb-5 text-left">
+                                One of the areas of coding that has excited me is linking up data and applications to one another.  I began development
+                                on an API integration for the primarily used CRM (FranConnect) and google utilizing google apps. Also being one of two developers I
+                                handled quite a few hosting issues that would come up on the various sites that we maintained. The main platforms I have worked
+                                with are Dreamhost, Firebase and Heroku but I have had some minimal exposure ot AWS too.
+
+                                This is the one area I would say I have the most interest in expanding as I move forward in my career. Finding more ways to 
+                                connect up applications and data and make them look visually appealing and work well for the user.
+                            </p>
+                        </MDBCol>
+                        <MDBCol md="4">
+                            <MDBIcon far icon="comments" size="3x" className="orange-text" />
+                            <h5 className="font-weight-bold my-4">Project Management</h5>
+                            <p className="grey-text mb-md-0 mb-5 text-left">
+                                Working for a smaller company has helped me develop more of a Project Manager style way of working.  The flow of the project and 
+                                what was going to be developed first fell on the developer.  It taught me to manage my time correctly, when it was the right time
+                                to communicate issues and what where the necessary requirements needed before any project could truly begin.
+                            </p>
+                        </MDBCol>
                     </MDBRow>
                 </section>
             </div>
