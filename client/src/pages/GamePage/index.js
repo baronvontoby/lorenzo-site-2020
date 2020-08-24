@@ -1,6 +1,7 @@
 import React from 'react';
 import './game.css';
 import HarryPotterTrivia from '../../components/HarryPotterTrivia';
+import Calculator from '../../components/Calculator';
 import { MDBBtn, MDBBtnGroup, MDBRow, MDBContainer, MDBCol } from 'mdbreact';
 
 
@@ -63,14 +64,83 @@ class GamePage extends React.Component {
         },
         guessRight : null,
         guessWrong : null,
-        gameOver : false
+        gameOver : false,
+        calculatorShow : false,
+        calculator : [{
+            valueOne : '',
+            operator : '',
+            answer : ''
+        }]
     }
+
+    // Calculator Portion
+    calculatorShowHandler = () => {
+        const doesShow = this.state.calculatorShow;
+        const hpShow = this.state.harryPotterGame;
+        if (hpShow === true ) {
+            this.setState({harryPotterGame: !hpShow, calculatorShow: doesShow});
+        } else {
+            this.setState({calculatorShow: !doesShow});
+        }
+    }
+
+    valueInput = (event) => {
+        console.log(event);
+
+        let n = event.target.value;
+        console.log(n);
+        if ( event === '+' || event === '-' || event === '/' || event === '*') {
+            n = parseInt(n);
+            this.setState({
+                calculator : [
+                {
+                    valueOne : n,
+                    operator : event.target.value
+                }
+            ]});
+        }
+        else if ( event === '=') {
+            n = parseInt(n);
+            const m = this.state.calculator.valueOne
+            const o = this.state.calculator.operator
+            let sum = '';
+           switch (o) {
+                case '+':
+                    sum = m + n;
+                    this.setState({calculator : [{ answer : sum}]});
+                    break;
+                case '-':
+                    sum = n - m;
+                    this.setState({calculator : [{ answer : sum}]});
+                    break;
+                case '*':
+                    sum = m * n;
+                    this.setState({calculator : [{ answer : sum}]});
+                    break;
+                case '/':
+                    sum = n / m;
+                    this.setState({calculator : [{ answer : sum}]});
+                    break;
+                default:
+                    console.log('hello world');
+            }
+        }
+    }
+
+
     // HARRY POTTER GAME LOGIC//
 
     harryPotterGameHandler = () => {
         const doesShow = this.state.harryPotterGame;
-        this.setState({harryPotterGame: !doesShow});
+        const calc = this.state.calculatorShow;
+
+        if (calc === true ) {
+            this.setState({harryPotterGame: !doesShow, calculatorShow: !doesShow});
+        } else {
+            this.setState({harryPotterGame: !doesShow});
+        }
     }
+
 
     harryPlayHandler = () => {
         const oldArr = [...this.state.harryPotter];
@@ -113,11 +183,16 @@ class GamePage extends React.Component {
         }
     }
 
+    calculate = (event, id) => {
+
+    }
+
     render() {
 
         let result = null;
         let harryPotterHolder = null;
         let gameStatus = null;
+        let calcHolder = null;
 
         if (this.state.harryPotterGame) {
             harryPotterHolder = (
@@ -152,6 +227,16 @@ class GamePage extends React.Component {
             )
         }
 
+        if (this.state.calculatorShow) {
+            calcHolder = (
+                <Calculator
+                click={this.valueInput}
+                answer={this.state.calculator[0].answer}
+                >         
+                </Calculator>
+            )
+        }
+
         return(
             <div className='GameMain'>
                 <MDBContainer>
@@ -159,7 +244,7 @@ class GamePage extends React.Component {
                         <MDBCol md='12' className='mb-4 text-center'>
                             <MDBBtnGroup size='lg' className='btn-group'>
                                 <MDBBtn className='hpTriviaBtn' onClick={this.harryPotterGameHandler}>Harry Potter Trivia Game</MDBBtn>
-                                <MDBBtn className='hpTriviaBtn'>Coming Soon</MDBBtn>
+                                <MDBBtn className='hpTriviaBtn' onClick={this.calculatorShowHandler}>Awesome Calculator</MDBBtn>
                                 <MDBBtn className='hpTriviaBtn'>Coming Soon</MDBBtn>
                             </MDBBtnGroup>
                         </MDBCol>
@@ -167,6 +252,7 @@ class GamePage extends React.Component {
                     <MDBRow className='GameDisplay'>
                         <MDBCol md='12' className='mb-4 text-center'>
                             {harryPotterHolder}
+                            {calcHolder}
                         </MDBCol>
                     </MDBRow>
                     <MDBRow>
