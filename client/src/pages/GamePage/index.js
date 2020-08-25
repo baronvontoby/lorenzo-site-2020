@@ -68,9 +68,9 @@ class GamePage extends React.Component {
         calculatorShow : false,
         calculator : [{
             valueOne : '',
+            holder : '',
             operator : '',
-            answer : ''
-        }]
+         }]
     }
 
     // Calculator Portion
@@ -84,47 +84,78 @@ class GamePage extends React.Component {
         }
     }
 
-    valueInput = (event) => {
-        console.log(event);
-
-        let n = event.target.value;
-        console.log(n);
-        if ( event === '+' || event === '-' || event === '/' || event === '*') {
-            n = parseInt(n);
+   calculate = (event) => {
+        let i = event.target.value;
+        if ( i === '+' || i === '-' || i === '*' || i === '/') {
+            let oldVal = this.state.calculator[0].valueOne;
+            let newVal = oldVal;
+            let operator = i;
             this.setState({
-                calculator : [
-                {
-                    valueOne : n,
-                    operator : event.target.value
-                }
-            ]});
+                calculator : [{
+                    valueOne: '',
+                    holder: newVal,
+                    operator: operator
+                }]
+            });
+        } else if ( i === '=') {
+            console.log('worked')
+            let n = parseInt(this.state.calculator[0].valueOne);
+            let m = parseInt(this.state.calculator[0].holder);
+            let o = this.state.calculator[0].operator;
+            
+            if ( o === '+') {
+                let sum = m + n;
+                this.setState({
+                    calculator : [{
+                        valueOne: sum
+                    }]
+                });
+            } else if ( o === '-' ) {
+                let sum = m - n;
+                this.setState({
+                    calculator : [{
+                        valueOne: sum
+                    }]
+                });
+            } else if ( o === '*' ) {
+                let sum = m * n;
+                this.setState({
+                    calculator : [{
+                        valueOne: sum
+                    }]
+                });
+            } else if ( o === '/' ) {
+                let sum = m / n;
+                this.setState({
+                    calculator : [{
+                        valueOne: sum
+                    }]
+                });
+            } 
+        } else {
+            let oldVal = this.state.calculator[0].valueOne;
+            let newVal = oldVal + i;
+            let h = this.state.calculator[0].holder;
+            let o = this.state.calculator[0].operator;
+            this.setState({
+                calculator : [{
+                    valueOne: newVal,
+                    holder : h,
+                    operator : o
+                }]
+            });
         }
-        else if ( event === '=') {
-            n = parseInt(n);
-            const m = this.state.calculator.valueOne
-            const o = this.state.calculator.operator
-            let sum = '';
-           switch (o) {
-                case '+':
-                    sum = m + n;
-                    this.setState({calculator : [{ answer : sum}]});
-                    break;
-                case '-':
-                    sum = n - m;
-                    this.setState({calculator : [{ answer : sum}]});
-                    break;
-                case '*':
-                    sum = m * n;
-                    this.setState({calculator : [{ answer : sum}]});
-                    break;
-                case '/':
-                    sum = n / m;
-                    this.setState({calculator : [{ answer : sum}]});
-                    break;
-                default:
-                    console.log('hello world');
-            }
-        }
+
+    }
+
+    clear = (event) => {
+        this.setState({
+            calculator : [{
+                valueOne : '',
+                holder : '',
+                operator : '',
+            }]
+        })
     }
 
 
@@ -183,10 +214,6 @@ class GamePage extends React.Component {
         }
     }
 
-    calculate = (event, id) => {
-
-    }
-
     render() {
 
         let result = null;
@@ -230,8 +257,9 @@ class GamePage extends React.Component {
         if (this.state.calculatorShow) {
             calcHolder = (
                 <Calculator
-                click={this.valueInput}
-                answer={this.state.calculator[0].answer}
+                click={this.calculate}
+                clear={this.clear}
+                numbers={this.state.calculator[0].valueOne}
                 >         
                 </Calculator>
             )

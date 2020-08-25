@@ -7,8 +7,8 @@ const Calculator = (props) => {
     return (
         <MDBRow>
             <MDBCol md='12' className='mb-4'>
-                <label>Input</label>
-                <input type='text' className='form-control' id='mathValue' />                
+                <label className='calc-label'>Awesome Calculator</label>
+                <p className='calculator-box'>{props.numbers}</p>        
             </MDBCol>
             <MDBCol md='4' className='mb-4 move-middle'>
                 <MDBBtnGroup size='lg'>
@@ -33,6 +33,7 @@ const Calculator = (props) => {
                     <MDBBtn onClick={props.click} color='unique-color' value='/'>/</MDBBtn>
                     <MDBBtn onClick={props.click} color='unique-color' value='0'>0</MDBBtn>
                     <MDBBtn onClick={props.click} color='unique-color' value='='>=</MDBBtn>
+                    <MDBBtn onClick={props.clear} color='unique-color'>Clear</MDBBtn>
                 </MDBBtnGroup>
             </MDBCol>
             <MDBCol md='12' className='mb-4'>

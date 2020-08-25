@@ -3,3 +3,22 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.calculator-box {
+    background-color: #000;
+    color: #00FF00;
+    width: 30%;
+    height: 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+
+@media only screen and (max-width: 469px) {
+    .move-middle .btn-group .btn {
+        padding: 1rem 2.2rem;    
+    }
+    
+}
