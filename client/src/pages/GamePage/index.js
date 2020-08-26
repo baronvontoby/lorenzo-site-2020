@@ -74,6 +74,7 @@ class GamePage extends React.Component {
     }
 
     // Calculator Portion
+
     calculatorShowHandler = () => {
         const doesShow = this.state.calculatorShow;
         const hpShow = this.state.harryPotterGame;
@@ -86,64 +87,68 @@ class GamePage extends React.Component {
 
    calculate = (event) => {
         let i = event.target.value;
-        if ( i === '+' || i === '-' || i === '*' || i === '/') {
-            let oldVal = this.state.calculator[0].valueOne;
-            let newVal = oldVal;
-            let operator = i;
-            this.setState({
-                calculator : [{
-                    valueOne: '',
-                    holder: newVal,
-                    operator: operator
-                }]
-            });
-        } else if ( i === '=') {
-            console.log('worked')
-            let n = parseInt(this.state.calculator[0].valueOne);
-            let m = parseInt(this.state.calculator[0].holder);
-            let o = this.state.calculator[0].operator;
-            
-            if ( o === '+') {
-                let sum = m + n;
-                this.setState({
-                    calculator : [{
-                        valueOne: sum
-                    }]
-                });
-            } else if ( o === '-' ) {
-                let sum = m - n;
-                this.setState({
-                    calculator : [{
-                        valueOne: sum
-                    }]
-                });
-            } else if ( o === '*' ) {
-                let sum = m * n;
-                this.setState({
-                    calculator : [{
-                        valueOne: sum
-                    }]
-                });
-            } else if ( o === '/' ) {
-                let sum = m / n;
-                this.setState({
-                    calculator : [{
-                        valueOne: sum
-                    }]
-                });
-            } 
+        console.log(i)
+        if (i === undefined) {
+            console.log('too fast');
         } else {
-            let oldVal = this.state.calculator[0].valueOne;
-            let newVal = oldVal + i;
-            let h = this.state.calculator[0].holder;
-            let o = this.state.calculator[0].operator;
-            this.setState({
-                calculator : [{
-                    valueOne: newVal,
-                    holder : h,
-                    operator : o
-                }]
-            });
+            if ( i === '+' || i === '-' || i === '*' || i === '/') {
+                let oldVal = this.state.calculator[0].valueOne;
+                let newVal = oldVal;
+                let operator = i;
+                this.setState({
+                    calculator : [{
+                        valueOne: '',
+                        holder: newVal,
+                        operator: operator
+                    }]
+                });
+            } else if ( i === '=') {
+                let n = parseInt(this.state.calculator[0].valueOne);
+                let m = parseInt(this.state.calculator[0].holder);
+                let o = this.state.calculator[0].operator;
+                
+                if ( o === '+') {
+                    let sum = m + n;
+                    this.setState({
+                        calculator : [{
+                            valueOne: sum
+                        }]
+                    });
+                } else if ( o === '-' ) {
+                    let sum = m - n;
+                    this.setState({
+                        calculator : [{
+                            valueOne: sum
+                        }]
+                    });
+                } else if ( o === '*' ) {
+                    let sum = m * n;
+                    this.setState({
+                        calculator : [{
+                            valueOne: sum
+                        }]
+                    });
+                } else if ( o === '/' ) {
+                    let sum = m / n;
+                    this.setState({
+                        calculator : [{
+                            valueOne: sum
+                        }]
+                    });
+                } 
+            } else {
+                let oldVal = this.state.calculator[0].valueOne;
+                let newVal = oldVal + i;
+                let h = this.state.calculator[0].holder;
+                let o = this.state.calculator[0].operator;
+                this.setState({
+                    calculator : [{
+                        valueOne: newVal,
+                        holder : h,
+                        operator : o
+                    }]
+                });
+            }
         }
 
     }
