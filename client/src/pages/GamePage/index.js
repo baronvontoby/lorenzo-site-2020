@@ -87,9 +87,7 @@ class GamePage extends React.Component {
 
    calculate = (event) => {
         let i = event.target.value;
-        console.log(i)
         if (i === undefined) {
-            console.log('too fast');
         } else {
             if ( i === '+' || i === '-' || i === '*' || i === '/') {
                 let oldVal = this.state.calculator[0].valueOne;
