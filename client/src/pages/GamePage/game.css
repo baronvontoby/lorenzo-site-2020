@@ -7,8 +7,22 @@
     margin: 10px 20px;
 }
 
+.no-flex {
+    display: block;
+}
+
+.text-center .row {
+    display: block;
+}
+
 @media (max-width: 575.98px) {
     .btn-group {
         display: block;
+    }
+    .btn-group .btn {
+        border-radius: 0;
+        font-size: 12px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }

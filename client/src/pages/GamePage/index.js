@@ -527,15 +527,15 @@ class GamePage extends React.Component {
                             </MDBBtnGroup>
                         </MDBCol>
                     </MDBRow>
-                    <MDBRow className='GameDisplay'>
-                        <MDBCol md='12' className='mb-4 text-center'>
+                    <MDBRow className='no-flex'>
+                        <MDBCol md='12' className='mb-12 text-center'>
                             {harryPotterHolder}
                             {calcHolder}
                             {botGameHolder}
                         </MDBCol>
                     </MDBRow>
-                    <MDBRow>
-                        <MDBCol className='mb-8 text-center'>
+                    <MDBRow className='no-flex'>
+                        <MDBCol md='12' className='mb-12 text-center'>
                             {result}
                             {gameStatus}
                             {botGameFinal}
