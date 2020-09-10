@@ -76,7 +76,7 @@ class GamePage extends React.Component {
          botGameShow: false,
          botGame : [{
              currentlyPlaying : false,
-             numClosedDoors : 3,
+             numClosedDoors : 0,
              door1 : 'https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/closed_door.svg',
              door2 : 'https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/closed_door.svg',
              door3 : 'https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/closed_door.svg',
@@ -100,13 +100,16 @@ class GamePage extends React.Component {
         const doesShow = this.state.botGameShow;
         const hpShow = this.state.harryPotterGame;
         const calculatorShow = this.state.calculatorShow;
+        const newArr = [...this.state.botGame];
+        newArr[0].win = false;
+        newArr[0].lose = false;
         if (hpShow === true ) {
             this.setState({harryPotterGame: !hpShow, botGameShow: !doesShow});
         } else if (calculatorShow === true) {
             this.setState({botGameShow : !doesShow, calculatorShow : !calculatorShow});
         }
         else {
-            this.setState({botGameShow: !doesShow});
+            this.setState({botGameShow: !doesShow, botGame: newArr});
         }
     }
 
@@ -193,36 +196,49 @@ class GamePage extends React.Component {
     }
 
     startRound = () => {
-        const newArr = [...this.state.botGame]
-        newArr[0].currentlyPlaying = true;
-        newArr[0].door1 = newArr[0].closedDoorPath;
-        newArr[0].door2 = newArr[0].closedDoorPath;
-        newArr[0].door3 = newArr[0].closedDoorPath;
-        newArr[0].win = false;
-        newArr[0].lose = false;
-        let numClosedDoors = 3;
-        newArr[0].numClosedDoors = numClosedDoors;
-        let choreDoor = Math.floor(Math.random()*numClosedDoors);
-        if ( choreDoor === 0 ) {
-            newArr[0].guess1 = newArr[0].botDoorPath;
-            newArr[0].guess2 = newArr[0].spaceDoorPath;
-            newArr[0].guess3 = newArr[0].beachDoorPath;
-            this.setState({botGame: newArr})
-        } else if ( choreDoor === 1 ) {
-            newArr[0].guess2 = newArr[0].botDoorPath;
-            newArr[0].guess3 = newArr[0].spaceDoorPath;
-            newArr[0].guess1 = newArr[0].beachDoorPath;
-            this.setState({botGame: newArr})
+        let win = this.state.botGame[0].win;
+        let lose = this.state.botGame[0].lose;
+        let closed = this.state.botGame[0].numClosedDoors;
+        let playing = this.state.botGame[0].currentlyPlaying;
+        if( !win && playing ) {
+            return
+        } else if (!lose && playing) {
+            return
+        } else if (closed > 0 && playing) {
+            return
         } else {
-            newArr[0].guess3 = newArr[0].botDoorPath;
-            newArr[0].guess1 = newArr[0].spaceDoorPath;
-            newArr[0].guess2 = newArr[0].beachDoorPath;
-            this.setState({botGame: newArr})
+            const newArr = [...this.state.botGame]
+            newArr[0].currentlyPlaying = true;
+            newArr[0].door1 = newArr[0].closedDoorPath;
+            newArr[0].door2 = newArr[0].closedDoorPath;
+            newArr[0].door3 = newArr[0].closedDoorPath;
+            newArr[0].win = false;
+            newArr[0].lose = false;
+            let numClosedDoors = 3;
+            newArr[0].numClosedDoors = numClosedDoors;
+            let choreDoor = Math.floor(Math.random()*numClosedDoors);
+            if ( choreDoor === 0 ) {
+                newArr[0].guess1 = newArr[0].botDoorPath;
+                newArr[0].guess2 = newArr[0].spaceDoorPath;
+                newArr[0].guess3 = newArr[0].beachDoorPath;
+                this.setState({botGame: newArr})
+            } else if ( choreDoor === 1 ) {
+                newArr[0].guess2 = newArr[0].botDoorPath;
+                newArr[0].guess3 = newArr[0].spaceDoorPath;
+                newArr[0].guess1 = newArr[0].beachDoorPath;
+                this.setState({botGame: newArr})
+            } else {
+                newArr[0].guess3 = newArr[0].botDoorPath;
+                newArr[0].guess1 = newArr[0].spaceDoorPath;
+                newArr[0].guess2 = newArr[0].beachDoorPath;
+                this.setState({botGame: newArr})
+            }
         }
     }
 
     gameOver = status => {
         const newArr = [...this.state.botGame];
+        newArr[0].currentlyPlaying = false;
         if ( status === 'win' ) {
             newArr[0].win = true;
             this.setState({botGame: newArr});
@@ -244,11 +260,13 @@ class GamePage extends React.Component {
         const doesShow = this.state.calculatorShow;
         const hpShow = this.state.harryPotterGame;
         const botGame = this.state.botGameShow;
-
+        const newArr = [...this.state.botGame];
+        newArr[0].win = false;
+        newArr[0].lose = false;
         if (hpShow === true ) {
             this.setState({harryPotterGame: !hpShow, calculatorShow: !doesShow});
         } else if (botGame === true) {
-            this.setState({botGameShow : !botGame, calculatorShow : !doesShow});
+            this.setState({botGameShow : !botGame, calculatorShow : !doesShow, botGame: newArr});
         }
         else {
             this.setState({calculatorShow: !doesShow});
@@ -348,10 +366,13 @@ class GamePage extends React.Component {
         const doesShow = this.state.harryPotterGame;
         const calc = this.state.calculatorShow;
         const botGame = this.state.botGameShow;
+        const newArr = [...this.state.botGame];
+        newArr[0].win = false;
+        newArr[0].lose = false;
         if (calc === true ) {
             this.setState({harryPotterGame: !doesShow, calculatorShow: !calc});
         } else if ( botGame ) {
-            this.setState({harryPotterGame: !doesShow, botGameShow : !botGame});
+            this.setState({harryPotterGame: !doesShow, botGameShow : !botGame, botGame : newArr});
         } else {
             this.setState({harryPotterGame: !doesShow});
         }
