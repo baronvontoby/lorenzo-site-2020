@@ -2,6 +2,7 @@ import React from 'react';
 import './game.css';
 import HarryPotterTrivia from '../../components/HarryPotterTrivia';
 import Calculator from '../../components/Calculator';
+import BotGame from '../../components/BotGame';
 import { MDBBtn, MDBBtnGroup, MDBRow, MDBContainer, MDBCol } from 'mdbreact';
 
 
@@ -70,24 +71,195 @@ class GamePage extends React.Component {
             valueOne : '',
             holder : '',
             operator : '',
+            equalChecker : ''
+         }],
+         botGameShow: false,
+         botGame : [{
+             currentlyPlaying : false,
+             numClosedDoors : 3,
+             door1 : 'https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/closed_door.svg',
+             door2 : 'https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/closed_door.svg',
+             door3 : 'https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/closed_door.svg',
+             spaceDoorPath : 'https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/space.svg',
+             botDoorPath : 'https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/robot.svg',
+             beachDoorPath : 'https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/beach.svg',
+             closedDoorPath : 'https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/closed_door.svg',
+             guess1 : '',
+             guess2 : '',
+             guess3 : '',
+             win: false,
+             lose: false
          }]
     }
 
+    //
+    // BOT GAME!
+    //
+
+    botShowHandler = () => {
+        const doesShow = this.state.botGameShow;
+        const hpShow = this.state.harryPotterGame;
+        const calculatorShow = this.state.calculatorShow;
+        if (hpShow === true ) {
+            this.setState({harryPotterGame: !hpShow, botGameShow: !doesShow});
+        } else if (calculatorShow === true) {
+            this.setState({botGameShow : !doesShow, calculatorShow : !calculatorShow});
+        }
+        else {
+            this.setState({botGameShow: !doesShow});
+        }
+    }
+
+
+
+    isBot = door => {
+        let botDoorPath = this.state.botGame[0].botDoorPath;
+        if ( door === botDoorPath ) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    isClicked = door => {
+        let closedDoorPath = this.state.botGame[0].closedDoorPath;
+        if ( door === closedDoorPath ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    doorCheck1 = () => {
+        const currentlyPlaying = this.state.botGame[0].currentlyPlaying;
+        const doorImage = this.state.botGame[0].door1;
+        if ( currentlyPlaying && !this.isClicked(doorImage)  ) {
+            const newArr = [...this.state.botGame];
+            let x = this.state.botGame[0].guess1;
+            const numClosedDoors = newArr[0].numClosedDoors;
+            let newNumClosedDoors = numClosedDoors - 1;
+            newArr[0].numClosedDoors = newNumClosedDoors;
+            newArr[0].door1 = x;
+            if ( newNumClosedDoors === 0 ) {
+                this.gameOver('win');
+            } else if ( this.isBot(x) ) {
+                this.gameOver();
+            } else {
+                this.setState({botGame: newArr});
+            }
+        }
+    }
+
+    doorCheck2 = () => {
+        const currentlyPlaying = this.state.botGame[0].currentlyPlaying;
+        const doorImage = this.state.botGame[0].door2;
+        if ( currentlyPlaying && !this.isClicked(doorImage) ) {
+            let x = this.state.botGame[0].guess2;
+            const newArr = [...this.state.botGame];
+            const numClosedDoors = newArr[0].numClosedDoors;
+            let newNumClosedDoors = numClosedDoors - 1;
+            newArr[0].numClosedDoors = newNumClosedDoors;
+            newArr[0].door2 = x;
+            if ( newNumClosedDoors === 0 ) {
+                this.gameOver('win');
+            } else if ( this.isBot(x) ) {
+                this.gameOver();
+            } else {
+                this.setState({botGame: newArr});
+            }
+        }
+    }
+
+    doorCheck3 = () => {
+        const currentlyPlaying = this.state.botGame[0].currentlyPlaying;
+        const doorImage = this.state.botGame[0].door3;
+        if ( currentlyPlaying && !this.isClicked(doorImage) ) {
+            const newArr = [...this.state.botGame];
+            const numClosedDoors = newArr[0].numClosedDoors;
+            let newNumClosedDoors = numClosedDoors - 1;
+            newArr[0].numClosedDoors = newNumClosedDoors;
+            let x = this.state.botGame[0].guess3;
+            newArr[0].door3 = x;
+            console.log(newArr);
+            if ( newNumClosedDoors === 0 ) {
+                this.gameOver('win');
+            } else if ( this.isBot(x) ) {
+                this.gameOver();
+            } else {
+                this.setState({botGame: newArr});
+            }
+        }
+    }
+
+    startRound = () => {
+        const newArr = [...this.state.botGame]
+        newArr[0].currentlyPlaying = true;
+        newArr[0].door1 = newArr[0].closedDoorPath;
+        newArr[0].door2 = newArr[0].closedDoorPath;
+        newArr[0].door3 = newArr[0].closedDoorPath;
+        newArr[0].win = false;
+        newArr[0].lose = false;
+        let numClosedDoors = 3;
+        newArr[0].numClosedDoors = numClosedDoors;
+        let choreDoor = Math.floor(Math.random()*numClosedDoors);
+        if ( choreDoor === 0 ) {
+            newArr[0].guess1 = newArr[0].botDoorPath;
+            newArr[0].guess2 = newArr[0].spaceDoorPath;
+            newArr[0].guess3 = newArr[0].beachDoorPath;
+            this.setState({botGame: newArr})
+        } else if ( choreDoor === 1 ) {
+            newArr[0].guess2 = newArr[0].botDoorPath;
+            newArr[0].guess3 = newArr[0].spaceDoorPath;
+            newArr[0].guess1 = newArr[0].beachDoorPath;
+            this.setState({botGame: newArr})
+        } else {
+            newArr[0].guess3 = newArr[0].botDoorPath;
+            newArr[0].guess1 = newArr[0].spaceDoorPath;
+            newArr[0].guess2 = newArr[0].beachDoorPath;
+            this.setState({botGame: newArr})
+        }
+    }
+
+    gameOver = status => {
+        const newArr = [...this.state.botGame];
+        if ( status === 'win' ) {
+            newArr[0].win = true;
+            this.setState({botGame: newArr});
+        } else {
+            newArr[0].lose = true;
+            this.setState({botGame: newArr});
+        }
+    }
+
+    //
+    //
+    //
     // Calculator Portion
+    //
+    //
+    //
 
     calculatorShowHandler = () => {
         const doesShow = this.state.calculatorShow;
         const hpShow = this.state.harryPotterGame;
+        const botGame = this.state.botGameShow;
+
         if (hpShow === true ) {
-            this.setState({harryPotterGame: !hpShow, calculatorShow: doesShow});
-        } else {
+            this.setState({harryPotterGame: !hpShow, calculatorShow: !doesShow});
+        } else if (botGame === true) {
+            this.setState({botGameShow : !botGame, calculatorShow : !doesShow});
+        }
+        else {
             this.setState({calculatorShow: !doesShow});
         }
     }
 
    calculate = (event) => {
         let i = event.target.value;
-        if (i === undefined) {
+        let f = this.state.calculator[0].equalChecker;
+        if (i === undefined || f === '=') {
+            return
         } else {
             if ( i === '+' || i === '-' || i === '*' || i === '/') {
                 let oldVal = this.state.calculator[0].valueOne;
@@ -109,28 +281,32 @@ class GamePage extends React.Component {
                     let sum = m + n;
                     this.setState({
                         calculator : [{
-                            valueOne: sum
+                            valueOne: sum,
+                            equalChecker: i
                         }]
                     });
                 } else if ( o === '-' ) {
                     let sum = m - n;
                     this.setState({
                         calculator : [{
-                            valueOne: sum
+                            valueOne: sum,
+                            equalChecker: i
                         }]
                     });
                 } else if ( o === '*' ) {
                     let sum = m * n;
                     this.setState({
                         calculator : [{
-                            valueOne: sum
+                            valueOne: sum,
+                            equalChecker: i
                         }]
                     });
                 } else if ( o === '/' ) {
                     let sum = m / n;
                     this.setState({
                         calculator : [{
-                            valueOne: sum
+                            valueOne: sum,
+                            equalChecker: i
                         }]
                     });
                 } 
@@ -157,19 +333,25 @@ class GamePage extends React.Component {
                 valueOne : '',
                 holder : '',
                 operator : '',
+                equalChecker: ''
             }]
         })
     }
 
-
-    // HARRY POTTER GAME LOGIC//
+    //
+    //
+    // HARRY POTTER GAME LOGIC
+    //
+    //
 
     harryPotterGameHandler = () => {
         const doesShow = this.state.harryPotterGame;
         const calc = this.state.calculatorShow;
-
+        const botGame = this.state.botGameShow;
         if (calc === true ) {
-            this.setState({harryPotterGame: !doesShow, calculatorShow: !doesShow});
+            this.setState({harryPotterGame: !doesShow, calculatorShow: !calc});
+        } else if ( botGame ) {
+            this.setState({harryPotterGame: !doesShow, botGameShow : !botGame});
         } else {
             this.setState({harryPotterGame: !doesShow});
         }
@@ -223,18 +405,33 @@ class GamePage extends React.Component {
         let harryPotterHolder = null;
         let gameStatus = null;
         let calcHolder = null;
+        let botGameHolder = null;
+        let botGameFinal = null
 
         if (this.state.harryPotterGame) {
             harryPotterHolder = (
-                <HarryPotterTrivia
-                    question={this.state.currentGame[0].question}
-                    correct={this.state.currentGame[0].correct}
-                    answers={this.state.currentGame[0].answers}
-                    click={this.harryPlayHandler}
-                    checker={this.answerChecker}
-                    gRight={this.state.guessRight}
-                    gWrong={this.state.guessWrong}
-                ></HarryPotterTrivia>
+                <MDBRow>
+                    <MDBCol className='mb-12'>
+                        <HarryPotterTrivia
+                            question={this.state.currentGame[0].question}
+                            correct={this.state.currentGame[0].correct}
+                            answers={this.state.currentGame[0].answers}
+                            click={this.harryPlayHandler}
+                            checker={this.answerChecker}
+                            gRight={this.state.guessRight}
+                            gWrong={this.state.guessWrong}
+                        >
+                        </HarryPotterTrivia>
+                    </MDBCol>
+                    <MDBCol className='mb-12'>
+                        <MDBRow>
+                            <MDBCol md='12' className='mb-4 text-center'>
+                                <h3>Wins and Losses</h3>
+                                <p>Wins: {this.state.harryPotterWinsLosses.wins} Losses: {this.state.harryPotterWinsLosses.losses}</p>
+                            </MDBCol>
+                        </MDBRow>
+                    </MDBCol>
+                </MDBRow>
              )
         }
 
@@ -268,6 +465,35 @@ class GamePage extends React.Component {
             )
         }
 
+        if (this.state.botGameShow) {
+            botGameHolder = (
+                <BotGame 
+                door1={this.state.botGame[0].door1}
+                door2={this.state.botGame[0].door2}
+                door3={this.state.botGame[0].door3}
+                doorClick1={this.doorCheck1}
+                doorClick2={this.doorCheck2}
+                doorClick3={this.doorCheck3}
+                start={this.startRound}
+                >
+                </BotGame>
+            )
+        }
+
+        if (this.state.botGame[0].win) {
+            botGameFinal = (
+                <MDBRow className='d-flex justify-content-center'>
+                    <p>Congrats on the win! Hit play to play again.</p>
+                </MDBRow>
+            )
+        } else if (this.state.botGame[0].lose) {
+            botGameFinal = (
+                <MDBRow className='d-flex justify-content-center'>
+                    <p>At last, you weren't good enough to avoid the Chore BOT!  Your workload will be endless! Hit play to play again.</p>
+                </MDBRow>
+            )
+        }
+
         return(
             <div className='GameMain'>
                 <MDBContainer>
@@ -276,7 +502,7 @@ class GamePage extends React.Component {
                             <MDBBtnGroup size='lg' className='btn-group'>
                                 <MDBBtn className='hpTriviaBtn' onClick={this.harryPotterGameHandler}>Harry Potter Trivia Game</MDBBtn>
                                 <MDBBtn className='hpTriviaBtn' onClick={this.calculatorShowHandler}>Awesome Calculator</MDBBtn>
-                                <MDBBtn className='hpTriviaBtn'>Coming Soon</MDBBtn>
+                                <MDBBtn className='hpTriviaBtn' onClick={this.botShowHandler}>Bot Game</MDBBtn>
                             </MDBBtnGroup>
                         </MDBCol>
                     </MDBRow>
@@ -284,18 +510,14 @@ class GamePage extends React.Component {
                         <MDBCol md='12' className='mb-4 text-center'>
                             {harryPotterHolder}
                             {calcHolder}
+                            {botGameHolder}
                         </MDBCol>
                     </MDBRow>
                     <MDBRow>
-                        <MDBCol className='mb-4 text-center'>
+                        <MDBCol className='mb-8 text-center'>
                             {result}
                             {gameStatus}
-                        </MDBCol>
-                    </MDBRow>
-                    <MDBRow>
-                        <MDBCol md='12' className='mb-4 text-center'>
-                            <h3>Wins and Losses</h3>
-                            <p>Wins: {this.state.harryPotterWinsLosses.wins} Losses: {this.state.harryPotterWinsLosses.losses}</p>
+                            {botGameFinal}
                         </MDBCol>
                     </MDBRow>
                 </MDBContainer>

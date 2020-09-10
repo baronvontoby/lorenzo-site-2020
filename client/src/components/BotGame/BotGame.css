@@ -1,0 +1,35 @@
+.content-center {
+    margin: 0 auto;
+}
+
+.door-row {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.left-door {
+    margin-left: auto;
+}
+
+.right-door {
+    margin-right: auto;
+}
+
+.bot-list {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bot-list li {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.bot-button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bot-img {
+    margin: 0 10px;
+}
