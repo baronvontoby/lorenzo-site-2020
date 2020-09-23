@@ -38,6 +38,9 @@ class NavBar extends React.Component {
                   <MDBNavItem>
                     <MDBNavLink to="/games">Fun Games</MDBNavLink>
                   </MDBNavItem>
+                  <MDBNavItem>
+                    <MDBNavLink to="/api">API Examples</MDBNavLink>
+                  </MDBNavItem>
                 </MDBNavbarNav>
               </MDBCollapse>
             </MDBNavbar>

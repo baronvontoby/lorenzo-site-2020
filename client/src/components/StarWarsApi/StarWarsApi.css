@@ -1,0 +1,13 @@
+.margin-man {
+    margin: 100px auto 0px;
+}
+
+.middle {
+    margin: 0 auto;
+}
+
+.sw-heading {
+    margin: 20px auto;
+    font-style: italic;
+    font-weight: 500;
+}
