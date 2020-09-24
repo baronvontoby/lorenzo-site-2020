@@ -6,6 +6,7 @@ import StarWarsApi from '../../components/StarWarsApi';
 import StarWarsImage from '../../images/hero_star_wars.png';
 import StarWarsImage2 from '../../images/1200px-Star_wars2.png';
 import StarWarsCard from '../../components/StarWarsCard';
+import StarWarsJumbo from '../../components/StarWarsJumboTron';
 
 const images = [{StarWarsImage},{StarWarsImage2}]
 
@@ -113,6 +114,7 @@ searchStarWars = () => {
         if(inputOption === '') {
             let endpoint = `${option1}`
             API.starWarsGet(endpoint).then(res => {
+                console.log(res);
                 newState[0].finalResults = res.results;
                 newState[0].results = true;
                 this.setState({starWarsApi: newState})
@@ -163,10 +165,14 @@ render() {
     return(
         <MDBContainer>
             <MDBRow className='w-100 p-3'>
+                <StarWarsJumbo
+                    image={this.state.starWarsApi[0].image}
+                />
+            </MDBRow>
+            <MDBRow className='w-100 p-3'>
                 <StarWarsApi
                     firstOptions={this.state.starWarsApi[0].options}
                     click={this.searchStarWars}
-                    image={this.state.starWarsApi[0].image}
                     categoryValue={this.categorySelector}
                     categorySet={this.state.starWarsApi[0].categorySet}
                     selectedValue={this.state.starWarsApi[0].categoryOption}

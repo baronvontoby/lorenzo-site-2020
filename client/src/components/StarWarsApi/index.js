@@ -28,16 +28,12 @@ const StarWarsApiWindow = props => {
     return (
         <div className='margin-man'>
             <MDBRow>
-              <img src={props.image} alt='star wars' className='img-fluid'/>
-            </MDBRow>
-            <MDBRow>
-            <h3 className='middle w-75 sw-heading'>For Star Wars fans far and wide, welcome to Star Wars Encylopedia. Select a category and search the "SWAPI" a Star Wars open API for all things JEDI!</h3>
-            <MDBListGroup className='middle w-75'>
-                <MDBListGroupItem>First pick a category</MDBListGroupItem>
-                <MDBListGroupItem>Depending on what category you picked, either select from the options or fill in the input to refine your search</MDBListGroupItem>
-                <MDBListGroupItem>Leave the second option empty if you want to see multiple results</MDBListGroupItem>
-                <MDBListGroupItem>All information will be displayed below the form in card formats</MDBListGroupItem>
-            </MDBListGroup>
+                <MDBListGroup className='middle w-75'>
+                    <MDBListGroupItem>First pick a category</MDBListGroupItem>
+                    <MDBListGroupItem>Depending on what category you picked, either select from the options or fill in the input to refine your search</MDBListGroupItem>
+                    <MDBListGroupItem>Leave the second option empty if you want to see multiple results</MDBListGroupItem>
+                    <MDBListGroupItem>All information will be displayed below the form in card formats</MDBListGroupItem>
+                </MDBListGroup>
                 <MDBCol size='4' className='middle text-center'>
                     <MDBSelect 
                         options={props.firstOptions}
