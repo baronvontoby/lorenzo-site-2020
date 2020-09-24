@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBJumbotron, MDBBtn, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText } from "mdbreact";
+import { MDBJumbotron, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText } from "mdbreact";
 import './jumbo.css';
 
 

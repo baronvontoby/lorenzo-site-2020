@@ -1,5 +1,5 @@
 import React from 'react';
-import {MDBCard, MDBCardText, MDBCardTitle, MDBCardBody, MDBListGroup, MDBListGroupItem, MDBCol, MDBCardImage} from 'mdbreact';
+import {MDBCard, MDBCardTitle, MDBCardBody, MDBListGroup, MDBListGroupItem, MDBCol, MDBCardImage} from 'mdbreact';
 import './StarWarCard.css';
 
 const StarWarsCard = (props) => {

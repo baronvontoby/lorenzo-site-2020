@@ -2,6 +2,7 @@ const startWarsUrl = 'https://swapi.dev/api/';
 
 export default {
     starWarsGet: async(params) =>{
+        console.log(startWarsUrl);
         const response = await fetch(`${startWarsUrl}${params}`);
         try {
             if(response.ok) {

@@ -1,31 +1,35 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f1a6d572d8baa4f6deac40bd91f852c0",
+    "revision": "543dd2b0decfa38311adea36caca3af1",
     "url": "/index.html"
   },
   {
-    "revision": "e7f090e977e7c5352d3a",
+    "revision": "d1901db73664f527b455",
     "url": "/static/css/2.afdb01ab.chunk.css"
   },
   {
-    "revision": "6d222cf245c2de87d177",
-    "url": "/static/css/main.458c30ed.chunk.css"
+    "revision": "b1bc1f6bcb82bc370560",
+    "url": "/static/css/main.a2c3787f.chunk.css"
   },
   {
-    "revision": "e7f090e977e7c5352d3a",
-    "url": "/static/js/2.d4af5cee.chunk.js"
+    "revision": "d1901db73664f527b455",
+    "url": "/static/js/2.f23d8733.chunk.js"
   },
   {
     "revision": "b46eae19120e0343c25f399c83a404d7",
-    "url": "/static/js/2.d4af5cee.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.f23d8733.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6d222cf245c2de87d177",
-    "url": "/static/js/main.5a36003f.chunk.js"
+    "revision": "b1bc1f6bcb82bc370560",
+    "url": "/static/js/main.502eaa92.chunk.js"
   },
   {
     "revision": "e43b4766d11737cc6ae2",
     "url": "/static/js/runtime-main.68dfb603.js"
+  },
+  {
+    "revision": "0e88511488367041a1f3cc9f6c350174",
+    "url": "/static/media/1200px-Star_wars2.0e885114.png"
   },
   {
     "revision": "11911410dca2de148f30954eb2fd5eab",
@@ -114,6 +118,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "7100727b68c684e1322c101f33de353e",
     "url": "/static/media/heroHome.7100727b.jpg"
+  },
+  {
+    "revision": "29004c663837668c55803bd29a815801",
+    "url": "/static/media/hero_star_wars.29004c66.png"
   },
   {
     "revision": "6c95fd47aeb6762b39ddfc037824e78c",

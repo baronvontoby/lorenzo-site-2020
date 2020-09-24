@@ -110,7 +110,6 @@ searchStarWars = () => {
         }
     } else if (option1 !== 'films') {
         let inputOption = document.getElementById('secondValueInput').value;
-        console.log(inputOption);
         if(inputOption === '') {
             let endpoint = `${option1}`
             API.starWarsGet(endpoint).then(res => {

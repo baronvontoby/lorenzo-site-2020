@@ -1,25 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.458c30ed.chunk.css",
-    "main.js": "/static/js/main.5a36003f.chunk.js",
-    "main.js.map": "/static/js/main.5a36003f.chunk.js.map",
+    "main.css": "/static/css/main.a2c3787f.chunk.css",
+    "main.js": "/static/js/main.502eaa92.chunk.js",
+    "main.js.map": "/static/js/main.502eaa92.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.68dfb603.js",
     "runtime-main.js.map": "/static/js/runtime-main.68dfb603.js.map",
     "static/css/2.afdb01ab.chunk.css": "/static/css/2.afdb01ab.chunk.css",
-    "static/js/2.d4af5cee.chunk.js": "/static/js/2.d4af5cee.chunk.js",
-    "static/js/2.d4af5cee.chunk.js.map": "/static/js/2.d4af5cee.chunk.js.map",
+    "static/js/2.f23d8733.chunk.js": "/static/js/2.f23d8733.chunk.js",
+    "static/js/2.f23d8733.chunk.js.map": "/static/js/2.f23d8733.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.f5bc7cf1e010c88faada8dda686772fb.js": "/precache-manifest.f5bc7cf1e010c88faada8dda686772fb.js",
+    "precache-manifest.0ff0afeafc20852a059ae0197e33a863.js": "/precache-manifest.0ff0afeafc20852a059ae0197e33a863.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.afdb01ab.chunk.css.map": "/static/css/2.afdb01ab.chunk.css.map",
-    "static/css/main.458c30ed.chunk.css.map": "/static/css/main.458c30ed.chunk.css.map",
-    "static/js/2.d4af5cee.chunk.js.LICENSE.txt": "/static/js/2.d4af5cee.chunk.js.LICENSE.txt",
+    "static/css/main.a2c3787f.chunk.css.map": "/static/css/main.a2c3787f.chunk.css.map",
+    "static/js/2.f23d8733.chunk.js.LICENSE.txt": "/static/js/2.f23d8733.chunk.js.LICENSE.txt",
+    "static/media/1200px-Star_wars2.png": "/static/media/1200px-Star_wars2.0e885114.png",
     "static/media/mdb.css": "/static/media/default-skin.b257fa9c.svg",
     "static/media/bamazon.JPG": "/static/media/bamazon.a97fc808.JPG",
     "static/media/all.min.css": "/static/media/fa-solid-900.ec763292.svg",
     "static/media/flipClock.JPG": "/static/media/flipClock.e22f9053.JPG",
     "static/media/giphyFun.JPG": "/static/media/giphyFun.2fb72c6f.JPG",
     "static/media/heroHome.jpg": "/static/media/heroHome.7100727b.jpg",
+    "static/media/hero_star_wars.png": "/static/media/hero_star_wars.29004c66.png",
     "static/media/liriNodeApp.JPG": "/static/media/liriNodeApp.6c95fd47.JPG",
     "static/media/pugs4life.JPG": "/static/media/pugs4life.2dfd6dd9.JPG",
     "static/media/zombieGame.JPG": "/static/media/zombieGame.074be428.JPG"
@@ -27,8 +29,8 @@
   "entrypoints": [
     "static/js/runtime-main.68dfb603.js",
     "static/css/2.afdb01ab.chunk.css",
-    "static/js/2.d4af5cee.chunk.js",
-    "static/css/main.458c30ed.chunk.css",
-    "static/js/main.5a36003f.chunk.js"
+    "static/js/2.f23d8733.chunk.js",
+    "static/css/main.a2c3787f.chunk.css",
+    "static/js/main.502eaa92.chunk.js"
   ]
 }
