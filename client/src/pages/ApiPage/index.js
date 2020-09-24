@@ -1,10 +1,11 @@
 import React from 'react';
-import {MDBCol, MDBRow, MDBContainer} from 'mdbreact';
+import {MDBRow, MDBContainer, MDBCol} from 'mdbreact';
 import './ApiPage.css';
 import API from '../../util/API';
 import StarWarsApi from '../../components/StarWarsApi';
 import StarWarsImage from '../../images/hero_star_wars.png';
 import StarWarsImage2 from '../../images/1200px-Star_wars2.png';
+import StarWarsCard from '../../components/StarWarsCard';
 
 const images = [{StarWarsImage},{StarWarsImage2}]
 
@@ -44,7 +45,10 @@ state = {
           image2: images[1].StarWarsImage2,
           categoryOption: null,
           categorySet: false,
+          secondValue: false,
           secondOption: null,
+          categoryChecker: false,
+          resultsCategory: null,
           filmOptions: [
             {
                 text: "Star Wars: Episode IV A New Hope (1977)",
@@ -83,27 +87,47 @@ state = {
 searchStarWars = () => {
     let option1 = this.state.starWarsApi[0].categoryOption;
     let option2 = this.state.starWarsApi[0].secondOption;
-    console.log(typeof option2)
-    let newImage = this.state.starWarsApi[0].image2;
-    console.log(option2);
+    let secondValueCheck = this.state.starWarsApi[0].secondValue;
+    console.log(option1 + ' ' + option2 + ' ' + secondValueCheck);
     const newState = [...this.state.starWarsApi];
-    if (option2 === null) {
-        let inputOption = document.getElementById('secondValueInput').value;   
-        let endpoint = `${option1}/?search=${inputOption}`
-        console.log(endpoint);
-        API.starWarsGet(endpoint).then(res => {
-            console.log(res);
-            newState[0].finalResults = res.results[0];
-            this.setState({starWarsApi: newState})
-    });
+    newState[0].resultsCategory = option1;
+    if (option1 === 'films') {
+        if (secondValueCheck){
+            let endpoint = `${option1}/${option2}`;
+            API.starWarsGet(endpoint).then(res => {
+                newState[0].finalResults = res;
+                newState[0].results = true;
+                this.setState({starWarsApi: newState})
+            });
+        } else {
+            let endpoint = `${option1}`;
+            API.starWarsGet(endpoint).then(res => {
+                newState[0].finalResults = res.results;
+                newState[0].results = true;
+                this.setState({starWarsApi: newState})
+            });
+        }
+    } else if (option1 !== 'films') {
+        let inputOption = document.getElementById('secondValueInput').value;
+        console.log(inputOption);
+        if(inputOption === '') {
+            let endpoint = `${option1}`
+            API.starWarsGet(endpoint).then(res => {
+                newState[0].finalResults = res.results;
+                newState[0].results = true;
+                this.setState({starWarsApi: newState})
+            });   
+        } else {
+            let endpoint = `${option1}/?search=${inputOption}`
+            API.starWarsGet(endpoint).then(res => {
+                newState[0].finalResults = res.results;
+                newState[0].results = true;
+                this.setState({starWarsApi: newState})
+            });   
+        }
     } else {
-        let endpoint = `${option1}/${option2}`;
-        API.starWarsGet(endpoint).then(res => {
-            newState[0].finalResults = res;
-            newState[0].finalResults.newImage = newImage;
-            this.setState({starWarsApi: newState})
-        });
-    }
+        console.log('did not work');
+    } 
 }
 
 categorySelector = (e) => {
@@ -116,11 +140,26 @@ categorySelector = (e) => {
 secondValue = (e) => {
     const newOpt = [...this.state.starWarsApi];
     newOpt[0].secondOption = e[0];
+    newOpt[0].secondValue = true;
     this.setState({starWarsApi: newOpt})
 }
 
 
 render() {
+    let resultsHolder = null;
+    
+    if (this.state.starWarsApi[0].results) {
+        resultsHolder = (
+            this.state.starWarsApi[0].finalResults.map((item, id) => 
+                <StarWarsCard 
+                item={item} 
+                image={this.state.starWarsApi[0].image2} 
+                key={id} 
+                cardChecker={this.state.starWarsApi[0].resultsCategory} />
+            )
+        )
+    }
+
     return(
         <MDBContainer>
             <MDBRow className='w-100 p-3'>
@@ -135,6 +174,11 @@ render() {
                     getSecondValue={this.secondValue}
                 >
                 </StarWarsApi>
+                <MDBCol lg='12' md='12' sm='12'>
+                    <MDBRow className='w-100'>
+                        {resultsHolder}
+                    </MDBRow>
+                </MDBCol>
             </MDBRow>
         </MDBContainer>
     );

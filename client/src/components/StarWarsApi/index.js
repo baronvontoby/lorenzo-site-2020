@@ -4,7 +4,6 @@ import './StarWarsApi.css';
 
 const StarWarsApiWindow = props => {
     let continuedSelections = null;
-    let results = null;
     
     if (props.categorySet) {
      if (props.selectedValue === 'films') {
@@ -20,6 +19,7 @@ const StarWarsApiWindow = props => {
          continuedSelections = (
              <MDBInput 
                 id='secondValueInput'
+                valueDefault=''
              />
          )
      }
@@ -35,7 +35,7 @@ const StarWarsApiWindow = props => {
             <MDBListGroup className='middle w-75'>
                 <MDBListGroupItem>First pick a category</MDBListGroupItem>
                 <MDBListGroupItem>Depending on what category you picked, either select from the options or fill in the input to refine your search</MDBListGroupItem>
-                <MDBListGroupItem>Leave the second option empty if you want to see a bunch of options</MDBListGroupItem>
+                <MDBListGroupItem>Leave the second option empty if you want to see multiple results</MDBListGroupItem>
                 <MDBListGroupItem>All information will be displayed below the form in card formats</MDBListGroupItem>
             </MDBListGroup>
                 <MDBCol size='4' className='middle text-center'>
