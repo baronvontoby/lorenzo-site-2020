@@ -1,4 +1,5 @@
 .main-page-four {
     margin-left: auto;
     margin-right: auto;
+    display: flex;
 }

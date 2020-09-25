@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBRow, MDBCol, MDBIcon } from 'mdbreact';
+import { MDBRow, MDBCol, MDBIcon, MDBContainer } from 'mdbreact';
 import Hero from '../../images/heroHome.jpg';
 import './home.css';
 import HeroHolder from '../../components/HeroHolder';
@@ -30,14 +30,16 @@ class HomePage extends React.Component {
                     <HeroHolder src={this.state.heroImage} heading='The Journey of A Coder' text={heroText}>
                      </HeroHolder>
                 </section>
-                <section className="text-center my-5">
-                    <h2 className="h1-responsive font-weight-bold my-5">
-                        Who I am as a coder.
-                    </h2>
-                    <p className="lead grey-text w-responsive mx-auto mb-5">
-                        {secondPara}
-                    </p>
-                    <MDBRow className="main-page-four">
+                <MDBContainer className="text-center my-5">
+                    <MDBRow className="w-100">
+                        <h2 className="h1-responsive font-weight-bold my-5">
+                            Who I am as a coder.
+                        </h2>
+                        <p className="lead grey-text w-responsive mx-auto mb-5">
+                            {secondPara}
+                        </p>
+                    </MDBRow>
+                    <MDBRow className="main-page-four w-100">
                         <MDBCol md="4">
                             <MDBIcon icon="file-code" size="3x" className="red-text" />
                             <h5 className="font-weight-bold my-4">Front End and UI</h5>
@@ -71,7 +73,7 @@ class HomePage extends React.Component {
                             </p>
                         </MDBCol>
                     </MDBRow>
-                </section>
+                </MDBContainer>
             </div>
         );
     }
