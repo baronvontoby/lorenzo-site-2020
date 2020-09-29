@@ -89,7 +89,6 @@ searchStarWars = () => {
     let option1 = this.state.starWarsApi[0].categoryOption;
     let option2 = this.state.starWarsApi[0].secondOption;
     let secondValueCheck = this.state.starWarsApi[0].secondValue;
-    console.log(option1 + ' ' + option2 + ' ' + secondValueCheck);
     const newState = [...this.state.starWarsApi];
     newState[0].resultsCategory = option1;
     if (option1 === 'films') {
@@ -112,11 +111,17 @@ searchStarWars = () => {
         let inputOption = document.getElementById('secondValueInput').value;
         if(inputOption === '') {
             let endpoint = `${option1}`
-            API.starWarsGet(endpoint).then(res => {
-                console.log(res);
-                newState[0].finalResults = res.results;
-                newState[0].results = true;
-                this.setState({starWarsApi: newState})
+            API.starWarsGet(endpoint).then( res => {
+                let newArr = [];
+                newArr = res.results;
+                let next = res.next;
+                if (next) {
+                    this.continueFetching(next, newArr);
+                } else {
+                    newState[0].finalResults = newArr;
+                    newState[0].results = true;
+                    this.setState({starWarsApi: newState})
+                }
             });   
         } else {
             let endpoint = `${option1}/?search=${inputOption}`
@@ -129,6 +134,21 @@ searchStarWars = () => {
     } else {
         console.log('did not work');
     } 
+}
+
+continueFetching = (url, oldArr) => {
+    API.starWarsWhile(url).then( res => {
+        let newArr = res.results;
+        let mergedArr = newArr.concat(oldArr);
+        if ( res.next ) {
+            this.continueFetching(res.next, mergedArr);
+        } else {
+            let stateUpdate = [...this.state.starWarsApi]
+            stateUpdate[0].finalResults = mergedArr;
+            stateUpdate[0].results = true;
+            this.setState({starWarsApi: stateUpdate});            
+        }
+    })
 }
 
 categorySelector = (e) => {
